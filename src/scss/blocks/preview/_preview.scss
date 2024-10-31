@@ -73,3 +73,21 @@
         }
     }
 }
+.show {
+    display: block;
+}
+.hide {
+    display: none;
+}
+.fade {
+    animation: fade;
+    animation-duration: 1.5s;
+}
+@keyframes fade {
+    from {
+        opacity: .1;
+    }
+    to {
+        opacity: 1;
+    }
+}
