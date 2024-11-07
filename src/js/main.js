@@ -1,3 +1,5 @@
+const e = require("cors");
+
 window.addEventListener('DOMContentLoaded', () => {
 
     const tabs = document.querySelectorAll('.tabheader__item'),
@@ -40,11 +42,19 @@ window.addEventListener('DOMContentLoaded', () => {
     const deadline = '2024-11-6';
 
     function getTimeRemaning(endtime) {
-        const t = Date.parse(endtime) - Date.parse(new Date()),
-              days = Math.floor(t / 1000 / 60 / 60 / 24),
-              hours = Math.floor((t/ 1000 / 60 /60) % 24),
-              minutes = Math.floor((t / 1000 / 60) % 60),
-              seconds = Math.floor((t / 1000) % 60);
+        let days, hours, minutes, seconds;
+        const t = Date.parse(endtime) - Date.parse(new Date());
+        if(t < 0) {
+            days = 0;
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+        } else {
+            days = Math.floor(t / 1000 / 60 / 60 / 24),
+            hours = Math.floor((t/ 1000 / 60 /60) % 24),
+            minutes = Math.floor((t / 1000 / 60) % 60),
+            seconds = Math.floor((t / 1000) % 60);
+        }
 
         return {
             'total': t,
@@ -89,8 +99,45 @@ window.addEventListener('DOMContentLoaded', () => {
         
     setClock('.timer', deadline);
 
-   
+//    modal
+    const modalTrigger = document.querySelectorAll('[data-modal'),
+          btnCloseModal = document.querySelector('[data-close]'),
+          modalWindow = document.querySelector('.modal');
 
+    function openModal() {
+        modalWindow.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        clearInterval(modalInterval);
+    }
+    modalTrigger.forEach((btn) => {
+        btn.addEventListener('click', openModal)
+    });
 
+    btnCloseModal.addEventListener('click',closeModal);
+
+    function closeModal() {
+        modalWindow.style.display = 'none';
+        document.body.style.overflow = '';
+    };
+    modalWindow.addEventListener('click', (e) => {
+        if(e.target === modalWindow) {
+            closeModal();
+        }
+    });
+    document.addEventListener('keydown', (e) => {
+        if(e.code === "Escape" && modalWindow.style.display == 'block') {
+            closeModal();
+        }
+    });
+    const modalInterval = setInterval(openModal, 3000);
+
+    function showModalScroll() {
+        if(window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
+            openModal();
+            window.removeEventListener('scroll', showModalScroll);
+        }
+    }
+    window.addEventListener('scroll', showModalScroll);
+    
 });
 
