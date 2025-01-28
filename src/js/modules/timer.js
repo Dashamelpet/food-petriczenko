@@ -1,6 +1,4 @@
-function timer () {
-
-    const deadline = '2025-11-6';
+function timer (deadline) {
 
     function getTimeRemaning(endtime) {
         let days, hours, minutes, seconds;

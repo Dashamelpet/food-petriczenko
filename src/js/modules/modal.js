@@ -9,19 +9,13 @@ function openModal(modalSelector, modalInterval) {
     }
 }
 
-
-
 function closeModal(modalSelector) {
     const modalWindow = document.querySelector(modalSelector);
 
     modalWindow.style.display = 'none';
     document.body.style.overflow = '';
 };
-    modalWindow.addEventListener('click', (e) => {
-    if (e.target === modalWindow || e.target.getAttribute('data-close') == "") {
-        closeModal(modalSelector);
-    }
-});
+    
 
 
 function modal(triggerSelector, modalSelector, modalInterval) {
@@ -36,6 +30,11 @@ function modal(triggerSelector, modalSelector, modalInterval) {
     });
     modalTrigger.forEach((btn) => {
         btn.addEventListener('click', () => openModal(modalSelector, modalInterval))
+    });
+    modalWindow.addEventListener('click', (e) => {
+        if (e.target === modalWindow || e.target.getAttribute('data-close') == "") {
+            closeModal(modalSelector);
+        }
     });
     
 

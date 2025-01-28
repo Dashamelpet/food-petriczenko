@@ -12,14 +12,23 @@ import {closeModal} from './modules/modal';
 
 
 window.addEventListener('DOMContentLoaded', () => {
-    const modalInterval = setTimeout(() => openModal(modalSelector, modalInterval), 3000);
+    const modalInterval = setTimeout(() => openModal('.modal', modalInterval), 3000);
     console.log('hello1');
 
-    tabs();
+    tabs('.tabheader__item', '.tabcontent', '.tabheader__items', '.tabheader__item_active');
     calc();
     cards();
     forms();
     modal('[data-modal', '.modal', modalInterval);
-    sliders();
-    timer(); 
+    sliders({
+        totalWrap: '.offer__slider-wrapper',
+        slideWrap: '.offer__slider',
+        slideInner: '.offer__slider-inner',
+        slider: '.offer__slide',
+        prevArrow: '.offer__slider-prev',
+        nextArrow: '.offer__slider-next',
+        totalSliders: '#total',
+        currentSliders:'#current'
+    });
+    timer('2025-02-6'); 
 });

@@ -1,4 +1,4 @@
-function sliders() {
+function sliders({slider, totalWrap, slideWrap, prevArrow, nextArrow, totalSliders, currentSliders, slideInner}) {
     // //Slider моя работа
     // const slidersImg = document.querySelectorAll('.offer__slide'),
     //       totalQuantSlide = document.querySelector('#total'),
@@ -70,15 +70,16 @@ function sliders() {
     
     //Слайдер работа petrichenkoo
     
-    const sliders = document.querySelectorAll('.offer__slide'),
-            sliderWrapper = document.querySelector('.offer__slider'),
-            prev = document.querySelector('.offer__slider-prev'),
-            next = document.querySelector('.offer__slider-next'),
-            total = document.querySelector('#total'),
-            current = document.querySelector('#current'),
-            sliderWrrapper = document.querySelector('.offer__slider-wrapper'),
-            sliderInner = document.querySelector('.offer__slider-inner'),
+    const sliders = document.querySelectorAll(slider),
+            sliderWrapper = document.querySelector(slideWrap),
+            prev = document.querySelector(prevArrow),
+            next = document.querySelector(nextArrow),
+            total = document.querySelector(totalSliders),
+            current = document.querySelector(currentSliders),
+            sliderWrrapper = document.querySelector(totalWrap),
+            sliderInner = document.querySelector(slideInner),
             width = window.getComputedStyle(sliderWrrapper).width;
+            
     let indexSlider = 1;
     let offset = 0;
     const dots = [];
